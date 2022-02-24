@@ -1,1 +1,41 @@
-<p>useredit works!</p>
+<div class="container">
+    <h1>Edit User</h1>
+    <form>
+        <div class="row mb-3">
+            <div class="col">
+              <label>
+              Name<span>*</span></label>
+  
+              <input formControlName="name" type="text" class="form-control" placeholder="{{userDetails.name}}" aria-label="Name" ngModel/> <span> </span>
+         
+            </div>
+            <div class="mb-3">
+              <label>
+               
+              Age</label>
+              
+              <input
+                type="age"
+                class="form-control"
+                id="address"
+                name="age"
+                formControlName="age"
+              />
+             
+            </div>
+            <div class="mb-3">
+              <label>Address <span>*</span></label>
+              <input
+                type="address"
+                class="form-control"
+                id="address"
+                name="address"
+                formControlName="address"
+              />
+    </div>
+  
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="onSubmitForm()" >Edit User</button>
+    </form>
+  </div>
+  

@@ -28,6 +28,7 @@ export class UsertableComponent implements OnInit {
     },
   ]
   
+  
   constructor(private router:Router) { }
 
 
@@ -38,6 +39,11 @@ export class UsertableComponent implements OnInit {
     this.router.navigateByUrl('/adduser');
 };
 
+deleteRow(i: number){
+
+this.tableData.splice(i,1);
+
+}
 
 onEdit =() =>{
   this.router.navigateByUrl('/useredit');

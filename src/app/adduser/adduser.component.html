@@ -1,1 +1,43 @@
-<h1>This is form </h1>
+<div class="container">
+    <h1>Add New User</h1>
+    <form [formGroup]="addForm">
+        <div class="row mb-3">
+            <div class="col">
+              <label>
+              Name<span>*</span></label>
+  
+              <input formControlName="name" type="text" class="form-control" aria-label="Name" />
+              
+  
+         
+            </div>
+            <div class="mb-3">
+              <label>
+               
+              Age</label>
+              
+              <input
+                type="age"
+                class="form-control"
+                id="address"
+                name="age"
+                formControlName="age"
+              />
+             
+            </div>
+            <div class="mb-3">
+              <label>Address <span>*</span></label>
+              <input
+                type="address"
+                class="form-control"
+                id="address"
+                name="address"
+                formControlName="address"
+              />
+    </div>
+  
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="onSubmitForm()" >Add User</button>
+    </form>
+  </div>
+  

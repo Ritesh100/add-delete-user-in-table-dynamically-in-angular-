@@ -1,32 +1,36 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container">
+
     <h1>User List</h1>
-    <button class="btn btn-success"  (click)="onClick()">
+    <button class="btn btn-success" (click)="onClick()">
         Add User
     </button>
     <table class="table">
         <thead>
             <tr>
-                <th>S.N</th>
+                <!-- <th>S.N</th> -->
                 <th>ID</th>
                 <th>Name</th>
                 <th>Address</th>
                 <th>Age</th>
-                <th>Action</th>
+                <th colspan="1">Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let data of tableData; let i = index">
-                <td>{{i+1}}</td>
-                <td>{{data.id}}</td>
+            <tr *ngFor="let data of tableData;let i=index;">
+                 <!-- <td>{{i+1}}</td>  -->
+                <td class=>{{i}}</td>
                 <td>{{data.name}}</td>
                 <td>{{data.address}}</td>
                 <td>{{data.age}}</td>
                 <td>
-                    <button class="btn btn-warning" (click)="onEdit()">
+                    <button class="btn btn-warning" (click)="onEdit()"><i class="fa fa-pencil-square"></i>
                         Edit
                     </button>
-                    <button class="btn btn-danger">
-                      Delete
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="deleteRow(i)"><i class="fa fa-trash"></i>
+                        Delete
                     </button>
                 </td>
 
