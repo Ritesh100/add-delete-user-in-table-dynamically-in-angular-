@@ -39,6 +39,10 @@ export class UsertableComponent implements OnInit {
     this.router.navigateByUrl('/adduser');
 };
 
+onView=() =>{
+  this.router.navigateByUrl('/detail-View');
+}
+
 deleteRow(i: number){
 
 this.tableData.splice(i,1);

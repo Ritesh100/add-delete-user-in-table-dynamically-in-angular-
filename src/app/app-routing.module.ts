@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdduserComponent } from './adduser/adduser.component';
+import { DetailViewComponent } from './detail-view/detail-view.component';
 import { UsereditComponent } from './useredit/useredit.component';
 import { UsersComponent } from './users/users.component';
 import { UsertableComponent } from './usertable/usertable.component';
@@ -22,6 +23,10 @@ component:AdduserComponent
 {
   path:'useredit',
 component:UsereditComponent
+},
+{
+  path:'detail-View',
+  component:DetailViewComponent
 }
 
 ];
