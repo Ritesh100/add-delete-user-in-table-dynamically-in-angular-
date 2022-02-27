@@ -10,6 +10,7 @@ import { AdduserComponent } from './adduser/adduser.component';
 import { UsereditComponent } from './useredit/useredit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailViewComponent } from './detail-view/detail-view.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DetailViewComponent } from './detail-view/detail-view.component';
     UsertableComponent,
     AdduserComponent,
     UsereditComponent,
-    DetailViewComponent
+    DetailViewComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

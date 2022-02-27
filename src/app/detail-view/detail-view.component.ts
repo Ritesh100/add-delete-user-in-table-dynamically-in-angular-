@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-detail-view',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail-view.component.scss']
 })
 export class DetailViewComponent implements OnInit {
+  
 
-  constructor() { }
+  constructor(private userservice: UserService) { }
 
   ngOnInit(): void {
+   
   }
 
-}
+ 
+  }
+
+
+ 
+      
+   

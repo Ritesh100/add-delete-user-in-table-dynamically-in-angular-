@@ -16,5 +16,13 @@ export class UserService {
   addUsers(user: any): Observable<any> {
     return this.httpClient.post(this.baseUrl.concat(this.apiUrlEndPoint), user);
   }
+  
+  viewUser():Observable<any>{
+    return this.httpClient.get(this.baseUrl.concat(this.apiUrlEndPoint));
+  }
+   deleteUser(id:any):Observable<any>{
+     return this.httpClient.delete(this.baseUrl.concat(this.apiUrlEndPoint),id);
+   }
+ 
 
 }
