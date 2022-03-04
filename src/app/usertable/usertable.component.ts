@@ -12,7 +12,8 @@ export class UsertableComponent implements OnInit {
   
   
   constructor(private router:Router,
-    private userservice: UserService)
+    private userservice: UserService,
+)
    { } 
 
 
@@ -23,19 +24,13 @@ export class UsertableComponent implements OnInit {
     this.router.navigateByUrl('/adduser');
 };
 
-onView=() =>{
-  this.router.navigateByUrl('/detail-View');
+onView(id:number | undefined){
+  this.router.navigate(['/detail-View',id]);
 }
 
 
-// deleteRow(i: number){
-
-// this.userResponse.splice(i,1);
-
-// }
-
-onEdit =() =>{
-  this.router.navigateByUrl('/useredit');
+onEdit(id:any){
+  this.router.navigate(['/useredit',id]);
 }
 
 viewUser(){
@@ -49,15 +44,20 @@ viewUser(){
   );
 }
 
-deleteUser(data:any){
-  this.userservice.deleteUser(data.id).subscribe(
+deleteUser(id:any){
+  if(confirm("Do You want to Delete?")){
+  this.userservice.deleteUser(id).subscribe(
     (response:any) =>{
+      
       console.log(response);
       this.viewUser();
+      
     }, error =>{
       console.error(error);
     }
+    
   );
+}
 }
 
 }

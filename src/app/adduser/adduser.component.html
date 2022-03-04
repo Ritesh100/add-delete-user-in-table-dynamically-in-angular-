@@ -12,7 +12,13 @@
           <div class="col-sm-12">
             <div class="form-group">
               <label>Name: <span class="text-danger">*</span> </label>
-              <input type="text" placeholder="Full Name" formControlName="name" class="form-control"/>
+              <input type="text" placeholder="Full Name" formControlName="name" class="form-control" />
+              <span *ngIf="validation || forms['name'].dirty || 
+              forms['name'].touched &&forms['name'].invalid"
+                class="info-msg text-danger">
+                <small *ngIf="forms['name'].errors && forms['name'].errors?.['required']">
+                  Name is required</small>
+            </span>
             </div>
           </div>
         </div>
@@ -20,7 +26,14 @@
           <div class="col-sm-12">
             <div class="form-group">
               <label>Email: <span class="text-danger">*</span> </label>
-              <input type="email" placeholder="E-mail" formControlName="email" class="form-control"/>
+              <input type="email" placeholder="E-mail" formControlName="email" class="form-control" />
+              <span *ngIf="validation||forms['email'].dirty||forms['email'].touched &&forms['email'].invalid"
+                class="info-msg text-danger">
+                <small *ngIf="forms['email'].errors && forms['email'].errors?.['required']">>
+                  Email is required</small>
+               
+             
+              </span>
             </div>
           </div>
         </div>
@@ -28,7 +41,13 @@
           <div class="col-sm-12">
             <div class="form-group">
               <label>Password: <span class="text-danger">*</span> </label>
-              <input type="password" placeholder="Password" formControlName="password" class="form-control"/>
+              <input type="password" placeholder="Password" formControlName="password" class="form-control" />
+              <span *ngIf="validation||forms['password'].dirty||forms['password'].touched &&forms['password'].invalid"
+                class="info-msg text-danger">
+                <small *ngIf="forms['password'] && forms['password'].errors?.['required']">
+                  Password is required</small>
+             
+              </span>
             </div>
           </div>
         </div>
@@ -36,15 +55,75 @@
           <div class="col-sm-12">
             <div class="form-group">
               <label>Mobile Number: <span class="text-danger">*</span> </label>
-              <input type="text" formControlName="mobileNumber" placeholder="Mobile Number" class="form-control"/>
+              <input type="text" formControlName="mobileNumber" placeholder="Mobile Number" class="form-control" />
+              <span *ngIf="validation || forms['mobileNumber'].dirty||forms['mobileNumber'].touched &&forms['mobileNumber'].invalid"
+                class="info-msg text-danger">
+                <small *ngIf="forms['mobileNumber'].errors && forms['mobileNumber'].errors?.['required']">
+                  mobileNumber is required</small>
+             
+              </span>
             </div>
           </div>
         </div>
-        <div class="row mb-3">
-          <div class="col-sm-12">
-            <button (click)="onAddUser(userForm.value)" class="btn btn-success">Add User</button>
+        <div class="row-md-3">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>DOB: <span class="text-danger">*</span> </label>
+              <input type="date" formControlName="dob" placeholder="DOB" class="form-control" 
+              (change)="calculateAge()"/>
+              <span *ngIf="validation||forms['dob'].dirty||forms['dob'].touched &&forms['dob'].invalid"
+                class="info-msg text-danger">
+                <small *ngIf="forms['dob'].errors && forms['dob'].errors?.['required']">
+                  DOB is required</small>
+             
+              </span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>Age: </label>
+              <input type="number" formControlName="age" name="age" class="form-control" readonly />
+            </div>
           </div>
         </div>
+        <ng-container formArrayName="contacts"  *ngFor="let data of getContactForm?.controls; let i = index">
+          <div class="row mb-3" [formGroupName]="i">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>contact Number: <span class="text-danger">*</span> </label>
+                <input type="text" name="mobileNumber" id="mobileNumber" formControlName="mobileNumber"placeholder="Contact Number" class="form-control" />
+              
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Contact Email: <span class="text-danger">*</span> </label>
+                <input type="text" name="email" id="email" formControlName="email" placeholder="Contact Email" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <button class="btn btn-success" (click)="removeContact(i)">Delete</button> 
+            </div>
+          </div>
+        </ng-container>
+
+     
+           
+       
+        <div class="row mb-3">
+          <div class="col-sm-6">
+            <button (click)="onAddUser(userForm.value)" class="btn btn-success">Add User</button>
+          </div>
+          <div class="col-sm-4">
+            <button class="btn btn-success" (click)="initContacts()">Add More</button>
+          </div>
+         
+          
+        </div>
+        
+
+      
       </form>
     </div>
   </div>

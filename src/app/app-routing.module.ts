@@ -21,11 +21,11 @@ component:AdduserComponent
 },
 
 {
-  path:'useredit',
+  path:'useredit/:id',
 component:UsereditComponent
 },
 {
-  path:'detail-View',
+  path:'detail-View/:id',
   component:DetailViewComponent
 }
 

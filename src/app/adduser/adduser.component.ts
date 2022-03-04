@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 
@@ -11,10 +12,12 @@ import { UserService } from '../services/user.service';
 export class AdduserComponent implements OnInit {
   userForm: FormGroup = new FormGroup({
   });
+  validation: Boolean = false;
 
- 
+
   constructor(private formBuilder: FormBuilder,
-    private userservice: UserService) { }
+    private userservice: UserService,
+    private router :Router) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -24,22 +27,50 @@ export class AdduserComponent implements OnInit {
   }
   initForm() {
     this.userForm = this.formBuilder.group({
-      name: [undefined],
-      email: [undefined],
-      password: [undefined],
-      mobileNumber: [undefined],
+      name: [undefined, Validators.required],
+      email: [undefined, Validators.required],
+      password: [undefined, Validators.required],
+      mobileNumber: [undefined, Validators.required],
+      dob: [undefined, Validators.required],
+      age: [undefined, Validators.required],
+      contacts : new FormArray([])
     });
+    this.initContacts();
   }
-
+  
+  initContacts() {
+    (this.userForm.get('contacts') as FormArray).push(
+      this.formBuilder.group({
+        mobileNumber:[undefined],
+         email:[undefined]
+       
+      })
+    )
+  }
+  get getContactForm() :FormArray {
+    return (this.userForm.get('contacts') as FormArray);
+  }
   onAddUser(user: any) {
-    console.log(user);
-    this.userservice.addUsers(user).subscribe(
-      (response: any) => {
-        console.log(response);
-      }, error => {
-        console.error(error);
-      }
-    );
+    this.validation = true;
+    if (this.userForm.valid) {
+      this.userservice.addUsers(user).subscribe(
+        (response: any) => {
+          console.log(response);
+        }, error => {
+          console.error(error);
+        }
+      );
+    }
   }
+removeContact(contactIndex: number){
+  this.getContactForm.removeAt(contactIndex);
+}
 
+  calculateAge() {
+    var date = this.userForm.value.dob;
+    var year = new Date(date);
+    var timeDiff = Math.abs(Date.now() - year.getTime());
+    let age = Math.floor((timeDiff/(1000*3600*24*365)))
+    this.userForm.patchValue({age:age})
+  }
 }

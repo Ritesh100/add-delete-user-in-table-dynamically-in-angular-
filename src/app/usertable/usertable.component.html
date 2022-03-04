@@ -14,25 +14,27 @@
                 <th>Mobile Number</th>
                 <th>email</th>
                 <th>Password</th>
+                <th>DOB</th>
                 <th colspan="1">Action</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let data of userResponse;let i=index;">
-                 <!-- <td>{{i+1}}</td>  -->
+                
                 <td class=>{{data.id}}</td>
                 <td>{{data.name}}</td>
                 <td>{{data.mobileNumber}}</td>
                 <td>{{data.email}}</td>
                 <td>{{data.password}}</td>
+                <td>{{data.dob}}</td>
                 <td>
-                    <button class="btn btn-warning" (click)="onEdit()"><i class="fa fa-pencil-square"></i>
+                    <button class="btn btn-warning" (click)="onEdit(data.id)"><i class="fa fa-pencil-square"></i>
                         Edit
                     </button>
                 </td>
                 <td>
-                    <button class="btn btn-warning" (click)="onView()"><i class="fa fa-eye"></i>
-                        View
+                    <button class="btn btn-warning" (click)="onView(data.id)" >
+                        <i class="fa fa-eye"></i> View
                     </button>
                 </td>
                 <td>
